@@ -1,12 +1,8 @@
 class day1_2: day1_1 {
     override var label: String { "day1:2" }
-    override var path: String { "test" }
-    
-    override func parseLine(_ line: String) -> Int {
-        42
-    }
     
     override func pipeline() throws -> Int {
-        try read().map({parseLine($0)}).sum
+        try read().forEach({parseLine($0)})
+        return ll.map({l in l*rl.filter({r in l == r}).count}).sum
     }
 }
