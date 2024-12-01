@@ -5,9 +5,9 @@ class day1_1: IDay {
     var rl: [Int] = []
     
     func parseLine(_ line: String) {
-        let ps = line.split(separator: " ")
-        ll.append(Int(ps[0])!)
-        rl.append(Int(ps[1])!)
+        let (l, r) = line.splitOnce(" ")
+        ll.append(l.int)
+        rl.append(r.int)
     }
     
     func pipeline() throws -> Int {

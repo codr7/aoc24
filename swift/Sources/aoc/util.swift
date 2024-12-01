@@ -78,4 +78,11 @@ extension String {
     func rsearch(_ it: String) -> Range<String.Index>? {
         self.range(of: it, options: [.backwards])
     }
+
+    func splitOnce(_ separator: Element) -> (String, String) {
+        let ps = split(separator: separator, maxSplits: 1)
+        return (String(ps[0]), String(ps[1]))
+    }
+
+    var int: Int { Int(trimmed)! }
 }
