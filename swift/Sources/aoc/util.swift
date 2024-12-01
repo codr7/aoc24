@@ -50,9 +50,9 @@ func readLines(_ path: String) throws -> [String.SubSequence] {
       .map({$0.filter({$0 != "\r" && $0 != "\n"})})
 }
 
-extension [Int] {
-    var sum: Int { self.reduce(0, {(x:Int, y:Int) in x+y}) }
-    var product: Int { self.reduce(1, {(x:Int, y:Int) in x*y}) }
+extension Array where Element: Numeric {
+    var sum: Element { self.reduce(0, {(x:Element, y:Element) in x+y}) }
+    var product: Element { self.reduce(1, {(x:Element, y:Element) in x*y}) }
 }
 
 extension Array where Element: OptionalType {
@@ -85,4 +85,14 @@ extension String {
     }
 
     var int: Int { Int(trimmed)! }
+}
+
+func cosim(_ a: [Float], _ b: [Float]) -> Float {
+    let dp = zip(a, b).map({$0.0*$0.1}).sum
+    if dp == 0 { return 0 }
+    let na = pow(a.map({$0*$0}).sum, 0.5)
+    if na == 0 { return 1 }
+    let nb = pow(b.map({$0*$0}).sum, 0.5)
+    if nb == 0 { return 1 }
+    return dp / (na*nb)
 }
