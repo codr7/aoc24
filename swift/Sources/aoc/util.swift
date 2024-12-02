@@ -145,8 +145,6 @@ class PriorityQueue<T> {
         return min
     }
 
-    func push(_ it: T) { items.insert(it, at: index(it)) }
-    
+    func push(_ it: T) { items.insert(it, at: index(it)) }    
     func pop() -> T? { items.isEmpty ? nil : items.removeLast() }
-    
 }
