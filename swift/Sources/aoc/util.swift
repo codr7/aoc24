@@ -87,7 +87,11 @@ extension String {
     var int: Int { Int(trimmed)! }
 }
 
-func cosim(_ a: [Float], _ b: [Float]) -> Float {
+extension Int {
+    var sign: Int { (self < 0) ? -1 : 1 }
+}
+
+func cosineSimilarity(_ a: [Float], _ b: [Float]) -> Float {
     let dp = zip(a, b).map({$0.0*$0.1}).sum
     if dp == 0 { return 0 }
     let na = pow(a.map({$0*$0}).sum, 0.5)
@@ -96,3 +100,10 @@ func cosim(_ a: [Float], _ b: [Float]) -> Float {
     if nb == 0 { return 1 }
     return dp / (na*nb)
 }
+
+// priority queue
+/// func to get prio like compare in ordered set
+/// store array
+//// insert at right pos
+/// pop last
+//// reverse order
