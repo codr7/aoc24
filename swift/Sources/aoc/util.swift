@@ -117,11 +117,11 @@ func defaultCompare<T: Comparable>(_ l: T, _ r: T) -> Order {
     }
 }
 
-class PriorityQueue<T: Comparable> {
+class PriorityQueue<T> {
     let compare: Compare<T>
     var items: [T] = []
 
-    init(_ compare: @escaping Compare<T> = defaultCompare) {
+    init(_ compare: @escaping Compare<T> = defaultCompare) where T: Comparable {
         self.compare = compare
     }
 
