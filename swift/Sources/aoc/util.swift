@@ -101,6 +101,56 @@ func cosineSimilarity(_ a: [Float], _ b: [Float]) -> Float {
     return dp / (na*nb)
 }
 
+enum Order {
+    case equal, greater, less
+}
+
+typealias Compare<T> = (T, T) -> Order
+
+func defaultCompare<T: Comparable>(_ l: T, _ r: T) -> Order {
+    if l < r {
+        .less
+    } else if l > r {
+        .greater
+    } else {
+        .equal
+    }
+}
+
+class PriorityQueue<T: Comparable> {
+    let compare: Compare<T>
+    var items: [T] = []
+
+    init(_ compare: @escaping Compare<T> = defaultCompare) {
+        self.compare = compare
+    }
+
+    func index(_ it: T) -> Int {
+        var min = 0
+        var max = items.count
+        
+        while min < max {
+            let i = (min + max) / 2
+            
+            switch compare(it, items[i]) {
+            case .equal:
+                return i 
+            case .greater:
+                min = i + 1
+            case .less:
+                max = i
+            }
+        }
+        
+        return min
+    }
+
+    func push(_ it: T) { items.insert(it, at: index(it)) }
+    
+    func pop() -> T? { items.isEmpty ? nil : items.removeLast() }
+    
+}
+
 // priority queue
 /// func to get prio like compare in ordered set
 /// store array

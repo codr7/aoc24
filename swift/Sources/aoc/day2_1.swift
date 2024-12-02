@@ -10,7 +10,7 @@ class day2_1: IDay {
 
     func isSafe(_ report: Report) -> Bool {
         var pn = report[0]
-        var s = (report[1] - pn).sign
+        let s = (report[1] - pn).sign
         
         for n in report[1...] {
             let d = n - pn
