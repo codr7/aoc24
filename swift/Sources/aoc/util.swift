@@ -136,9 +136,9 @@ class PriorityQueue<T: Comparable> {
             case .equal:
                 return i 
             case .greater:
-                min = i + 1
-            case .less:
                 max = i
+            case .less:
+                min = i + 1
             }
         }
         
@@ -150,10 +150,3 @@ class PriorityQueue<T: Comparable> {
     func pop() -> T? { items.isEmpty ? nil : items.removeLast() }
     
 }
-
-// priority queue
-/// func to get prio like compare in ordered set
-/// store array
-//// insert at right pos
-/// pop last
-//// reverse order
