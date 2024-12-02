@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "aoc23",
+  name: "aoc",
 
   products: [
     .executable(
