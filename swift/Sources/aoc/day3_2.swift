@@ -1,19 +1,12 @@
 class day3_2: day3_1 {
     override var label: String { "day3:2" }
-
-    let ops: [Regex] = [
-      /mul\((\d{1,3}),(\d{1,3})\)/,
-      /do\(()()\)/,
-      /don't\(()()\)/
-    ]
- 
     var enabled = true
     
     override func parseLine(_ line: String) {
         var s = line
 
         while true {
-            var ms = ops
+            var ms = [mul, /do\(()()\)/, /don't\(()()\)/]
               .map({s.firstMatch(of: $0)})
               .filter({$0 != nil })
               .map({$0!})
