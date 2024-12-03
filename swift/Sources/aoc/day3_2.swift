@@ -6,27 +6,20 @@ class day3_2: day3_1 {
         var s = line
 
         while true {
-            var ms = [mul, /do\(()()\)/, /don't\(()()\)/]
-              .map({s.firstMatch(of: $0)})
-              .filter({$0 != nil })
-              .map({$0!})
-
-            if ms.isEmpty { break }
-            ms.sort(by: {(x, y) in x.range.lowerBound < y.range.lowerBound})
-            let m = ms[0]
-            
-            switch m.0[m.0.index(m.0.startIndex, offsetBy: 2)] {
-            case "l":
-                if enabled { result.append(Int(m.1)!*Int(m.2)!) }
-            case "(":
-                enabled = true
-            case "n":
-                enabled = false
-            default:
+            if let m = s.firstMatch(of: [mul, /do\(()()\)/, /don't\(()()\)/]) {
+                switch m.0[2] {
+                case "(":
+                    enabled = true
+                case "n":
+                    enabled = false
+                default:
+                    if enabled { result.append(Int(m.1)!*Int(m.2)!) }
+                }
+                
+                s = String(s[m.range.upperBound...])
+            } else {
                 break
             }
-
-            s = String(s[m.range.upperBound...])
         }
     }
 }

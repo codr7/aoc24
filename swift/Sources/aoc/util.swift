@@ -60,7 +60,21 @@ extension Array where Element: OptionalType {
     var non_nil: [Element] { filter({$0.asOptional != nil}) }
 }
 
+extension Substring {
+    subscript(i: Int) -> Character {
+        get {
+            self[index(startIndex, offsetBy: i)]
+        }
+    }
+}
+
 extension String {
+    subscript(i: Int) -> Character {
+        get {
+            self[index(startIndex, offsetBy: i)]
+        }
+    }
+
     var trimmed: String { trimmingCharacters(in: .whitespacesAndNewlines) }
 
     func parseInt(_ i: String.Index, _ j: String.Index) -> Int {
@@ -91,6 +105,17 @@ extension String {
     }
     
     var int: Int { Int(trimmed)! }
+
+    func firstMatch<T>(of: [Regex<T>]) -> Regex<T>.Match? {
+        var ms = of
+          .map(firstMatch)
+          .filter({$0 != nil })
+          .map({$0!})
+        
+        if ms.isEmpty { return nil }
+        ms.sort(by: {(x, y) in x.range.lowerBound < y.range.lowerBound})
+        return ms[0]
+    }
 }
 
 extension Int {
