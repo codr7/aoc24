@@ -11,8 +11,7 @@ class day3_1: IDay {
         while let m = s.firstMatch(of: mul) {
             result.append(Int(m.1)!*Int(m.2)!)
             s = String(s[m.range.upperBound...])
-        }
-        
+        }        
     }
 
     func pipeline() throws -> Int {
