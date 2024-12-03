@@ -18,16 +18,16 @@ class day3_2: day3_1 {
               .filter({$0 != nil })
               .map({$0!})
 
-            ms.sort(by: {(x, y) in x.range.lowerBound < y.range.lowerBound})
             if ms.isEmpty { break }
+            ms.sort(by: {(x, y) in x.range.lowerBound < y.range.lowerBound})
             let m = ms[0]
             
-            switch String(m.0).slice(0, 3) {
-            case "mul":
+            switch m.0[m.0.index(m.0.startIndex, offsetBy: 2)] {
+            case "l":
                 if enabled { result.append(Int(m.1)!*Int(m.2)!) }
-            case "do(":
+            case "(":
                 enabled = true
-            case "don":
+            case "n":
                 enabled = false
             default:
                 break
