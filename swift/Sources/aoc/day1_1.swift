@@ -11,7 +11,7 @@ class day1_1: IDay {
     }
     
     func pipeline() throws -> Int {
-        try read().forEach({parseLine($0)})
+        try read().forEach(parseLine)
         ll.sort()
         rl.sort()
         return zip(ll, rl).map({(l, r) in abs(l - r)}).sum

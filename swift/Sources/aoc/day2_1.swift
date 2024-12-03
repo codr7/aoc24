@@ -23,6 +23,6 @@ class day2_1: IDay {
     }
     
     func pipeline() throws -> Int {
-        try read().map({parseLine($0)}).filter({isSafe($0)}).count
+        try read().map(parseLine).filter(isSafe).count
     }
 }
