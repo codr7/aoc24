@@ -26,22 +26,11 @@ class day5_1: IDay {
           })
     }
 
-    func parseLines() throws {
-        let lines = try read()
-        var i = 0
-        
-        while i < lines.count {
-            let line = lines[i]
-            if !line.contains("|") { break }
-            parseRule(line)
-            i += 1
-        }
-
-        while i < lines.count {
-            parseUpdate(lines[i])
-            i += 1
-        }
+    func parseLine(_ line: String) {
+        line.contains("|") ? parseRule(line) : parseUpdate(line)
     }
+
+    func parseLines() throws { try read().forEach(parseLine) }
     
     func pipeline() throws -> Int {
         try parseLines()
