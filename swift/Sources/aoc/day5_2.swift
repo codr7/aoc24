@@ -3,20 +3,18 @@ class day5_2: day5_1 {
     
     func reorder(_ update: Update) -> Update {
         var result = update
-        var done = false
         
-        while !done {
-            done = true
-            
-            for (x, y) in rules {
-                if let i = result.firstIndex(of: x),
-                   let j = result.firstIndex(of: y),
-                   j < i {
-                    result.swapAt(i, j)
-                    done = false
-                }
-            }
-        }
+        while rules.map(
+                {(x, y) in
+                    if let i = result.firstIndex(of: x),
+                       let j = result.firstIndex(of: y),
+                       j < i {
+                        result.swapAt(i, j)
+                        return false
+                    }
+
+                    return true
+                }).contains(false) {}
 
         return result
     }
