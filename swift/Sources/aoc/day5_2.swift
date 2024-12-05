@@ -9,11 +9,11 @@ class day5_2: day5_1 {
             done = true
             
             for (x, y) in rules {
-                if let i = result.firstIndex(of: x), let j = result.firstIndex(of: y) {
-                    if j < i {
-                        result.swapAt(i, j)
-                        done = false
-                    }
+                if let i = result.firstIndex(of: x),
+                   let j = result.firstIndex(of: y),
+                   j < i {
+                    result.swapAt(i, j)
+                    done = false
                 }
             }
         }
