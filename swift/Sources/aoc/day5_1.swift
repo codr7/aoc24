@@ -17,6 +17,12 @@ class day5_1: IDay {
         updates.append(line.split(separator: ",").map({Int($0)!}))
     }
 
+    func parseLine(_ line: String) {
+        line.contains("|") ? parseRule(line) : parseUpdate(line)
+    }
+
+    func parseLines() throws { try read().forEach(parseLine) }
+
     func isOrdered(_ update: Update) -> Bool {
         rules.allSatisfy(
           {(x, y) in
@@ -25,12 +31,6 @@ class day5_1: IDay {
               return i == nil || j == nil || i! < j!
           })
     }
-
-    func parseLine(_ line: String) {
-        line.contains("|") ? parseRule(line) : parseUpdate(line)
-    }
-
-    func parseLines() throws { try read().forEach(parseLine) }
     
     func pipeline() throws -> Int {
         try parseLines()
