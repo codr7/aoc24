@@ -97,6 +97,10 @@ extension String {
         return (String(ps[0]), String(ps[1]))
     }
 
+    func split(_ separator: String) -> [String] {
+        split(separator: separator).map({String($0)})
+    }
+    
     func slice(_ from: Int, _ to: Int) -> String {
         let i = self.index(self.startIndex, offsetBy: from)
         let j = self.index(self.startIndex, offsetBy: to)

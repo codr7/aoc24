@@ -10,11 +10,11 @@ class day5_1: IDay {
     
     func parseRule(_ line: String) {
         let (x, y) = line.splitOnce("|")
-        rules.append((Int(x)!, Int(y)!))
+        rules.append((x.int, y.int))
     }
 
     func parseUpdate(_ line: String) {
-        updates.append(line.split(separator: ",").map({Int($0)!}))
+        updates.append(line.split(",").map({$0.int}))
     }
 
     func parseLine(_ line: String) {
