@@ -26,9 +26,9 @@ class day5_1: IDay {
     func isOrdered(_ update: Update) -> Bool {
         rules.allSatisfy(
           {(x, y) in
-              let i = update.firstIndex(of: x)
-              let j = update.firstIndex(of: y)
-              return i == nil || j == nil || i! < j!
+              if let i = update.firstIndex(of: x),
+                 let j = update.firstIndex(of: y) {i < j}
+              else {true}
           })
     }
     
