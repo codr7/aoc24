@@ -2,14 +2,12 @@ class day6_1: IDay {
     var label: String { "day6:1" }
     var path: String { "input6" }
 
+    var map: [[Character]] = [] 
     let dirs = [(0, -1), (1, 0), (0, 1), (-1, 0)]
     var di = 0
     var pos = (0, 0)
     var visited: Set<XY> = []
     
-    typealias Map = [[Character]]
-    var map: Map = []
-
     func parseLine(_ line: String) {
         var ml = Array(line)
 

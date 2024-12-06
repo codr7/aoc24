@@ -6,7 +6,7 @@ class day6_2: day6_1 {
         let start = pos
         while walk() {}
         var loops: Set<XY> = []
-          
+        
         for v in visited {
             map[v.y][v.x] = "$"
             pos = start
