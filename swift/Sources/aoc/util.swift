@@ -11,6 +11,20 @@ struct XY: Hashable, CustomStringConvertible {
     }
 }
 
+struct XYZ: Hashable, CustomStringConvertible {
+    let x: Int
+    let y: Int
+    let z: Int
+    
+    var description: String {"\(x):\(y):\(z)"}
+
+    init(_ x: Int, _ y: Int, _ z: Int) {
+        self.x = x
+        self.y = y
+        self.z = z
+    }
+}
+
 typealias Box = Set<XY>
 
 extension Box {
