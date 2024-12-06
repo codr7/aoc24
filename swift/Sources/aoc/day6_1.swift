@@ -34,7 +34,7 @@ class day6_1: IDay {
 
         if map[np.1][np.0] != "." {
             di = (di + 1) % dirs.count
-            return true
+            return walk()
         }
 
         pos = np
