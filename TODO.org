@@ -1,0 +1,1 @@
+swift run -Xswiftc -cross-module-optimization -c=release
