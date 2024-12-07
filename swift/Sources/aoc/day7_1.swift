@@ -37,7 +37,7 @@ class day7_1: IDay {
     }
 
     func isPossible(_ e: Equation, _ ops: [Op]) -> Bool {
-        permutations(ops, e.1.count-1, {eval(e, $0)})
+        firstPermutation(ops, e.1.count-1, where: {eval(e, $0)})
     }
 
     func pipeline() throws -> Int { try run([Add(), Mul()]) }
