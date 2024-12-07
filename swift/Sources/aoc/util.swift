@@ -198,19 +198,20 @@ class PriorityQueue<T> {
 }
 
 func firstPermutation<T>(_ values: [T], _ current: inout [T], _ n: Int,
-                         where pred: (_ v: [T]) -> Bool) -> Bool {
-    if current.count == n { return pred(current) }
+                         where pred: (_ v: [T]) -> Bool) -> [T]? {
+    if current.count == n { return pred(current) ? current : nil }
     
-    return values.contains(
-      where: {v in
-               current.append(v)
-               defer { current.removeLast() }
-               return firstPermutation(values, &current, n, where: pred)
-           })
+    for v in values {
+        current.append(v)
+        if let r = firstPermutation(values, &current, n, where: pred) { return r }
+        current.removeLast()
+    }
+
+    return nil
 }
 
 func firstPermutation<T>(_ values: [T], _ n: Int,
-                         where pred: (_ v: [T]) -> Bool) -> Bool {
+                         where pred: (_ v: [T]) -> Bool) -> [T]? {
     var current: [T] = []
     return firstPermutation(values, &current, n, where: pred)
 }
