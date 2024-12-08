@@ -68,6 +68,19 @@ class day8_1: IDay {
             
         height += 1
     }
+    
+    func draw() {
+        for r in 0..<height {
+            var line = ""
+            
+            for c in 0..<width {
+                if let c = positions[XY(c, r)] {line += String(c)}
+                else {line += "."}
+            }
+            
+            print(line)
+        }
+    }
 
     func pipeline() throws -> Int {
         try read().enumerated().forEach(parseLine)
@@ -81,18 +94,5 @@ class day8_1: IDay {
         draw()
         
         return ans.count
-    }
-
-    func draw() {
-        for r in 0..<height {
-            var line = ""
-            
-            for c in 0..<width {
-                if let c = positions[XY(c, r)] {line += String(c)}
-                else {line += "."}
-            }
-
-            print(line)
-        }
     }
 }
