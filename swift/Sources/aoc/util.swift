@@ -1,8 +1,39 @@
 import Foundation
 
+struct P<T: Equatable & Hashable>: Equatable, Hashable, CustomStringConvertible {
+    static func ==(_ l: P<T>, _ r: P<T>) -> Bool { l.x == r.x && l.y == r.y }
+      
+    let x: T
+    let y: T
+    
+    var description: String {"\(x):\(y)"}
+
+    init(_ x: T, _ y: T) {
+        self.x = x
+        self.y = y
+    }
+}
+
 struct XY: Hashable, CustomStringConvertible {
-    let x: Int
-    let y: Int
+    static func +=(_ l: inout XY, _ r: XY) {
+        l.x += r.x
+        l.y += r.y
+    }
+
+    static func -=(_ l: inout XY, _ r: XY) {
+        l.x -= r.x
+        l.y -= r.y
+    }
+
+    static func -(_ l: XY, _ r: XY) -> XY {
+        var result = l
+        result -= r
+        return result
+    }
+
+    var x: Int
+    var y: Int
+
     var description: String {"\(x):\(y)"}
 
     init(_ x: Int, _ y: Int) {
@@ -10,6 +41,8 @@ struct XY: Hashable, CustomStringConvertible {
         self.y = y
     }
 }
+
+func slope(_ l: XY, _ r: XY) -> XY { XY(r.x - l.x, r.y - l.y) }
 
 struct XYZ: Hashable, CustomStringConvertible {
     let x: Int
@@ -210,8 +243,35 @@ func firstPermutation<T>(_ values: [T], _ current: inout [T], _ n: Int,
     return nil
 }
 
+@discardableResult
 func firstPermutation<T>(_ values: [T], _ n: Int,
                          where pred: (_ v: [T]) -> Bool) -> [T]? {
     var current: [T] = []
     return firstPermutation(values, &current, n, where: pred)
+}
+
+func pairs<T: Hashable>(_ values: [T]) -> [(T, T)] {
+    var result: Set<P<T>> = []
+    
+    firstPermutation(values, 2, where: {v in
+                                         let (l, r) = (v[0], v[1])
+                                         
+                                         if l != r && !result.contains(P(r, l)) {
+                                             result.insert(P(l, r))
+                                         }
+                                         
+                                         return false
+                                     })
+
+    return Array(result.map({($0.x, $0.y)}))
+}
+
+extension Int {
+    var squared: Int { self * self }
+}
+
+func mdist(_ from: XY, _ to: XY) -> Int { abs(from.x - to.x) + abs(from.y - to.y) }
+
+func edist(_ from: XY, _ to: XY) -> Int {
+    Int(Double((to.x-from.x).squared + (to.y - from.y).squared).squareRoot())
 }

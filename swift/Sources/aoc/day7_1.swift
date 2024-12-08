@@ -1,5 +1,3 @@
-//inout values/ops
-
 class day7_1: IDay {
     var label: String { "day7:1" }
     var path: String { "input7" }
