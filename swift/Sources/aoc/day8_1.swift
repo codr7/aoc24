@@ -60,6 +60,7 @@ class day8_1: IDay {
             if c != "." {
                 let xy = XY(x, y)
                 positions[xy] = c                
+
                 if antennas[c] != nil { antennas[c]!.append(xy) }
                 else { antennas[c] = [xy] }
             }
@@ -76,8 +77,8 @@ class day8_1: IDay {
           [],
           {(_ acc: Set<XY>, _ pairs: [(XY, XY)]) in antinodes(pairs, acc)})
 
-        //for p in ans { positions[p] = "#" }
-        //draw()
+        for p in ans { positions[p] = "#" }
+        draw()
         
         return ans.count
     }
