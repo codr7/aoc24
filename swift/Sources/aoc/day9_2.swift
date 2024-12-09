@@ -2,16 +2,26 @@ class day9_2: day9_1 {
     override var label: String { "day9:2" }
 
     func moveFile(_ fileId: Int, _ start: Int, _ n: Int) {
-        for i in 0..<start {
-            if let fb = freeBlocks[i], fb >= n {
-                freeBlocks[start] = n
-                freeBlocks[i] = nil
-                if fb > n { freeBlocks[i+n] = fb - n }
-                files[fileId] = (i, n)
+        var i = freeBlocks.count-1
+        
+        while i >= 0 {
+            let fb = freeBlocks[i]
+            if fb.0 > start { break }
+            
+            if fb.1 >= n {
+                if fb.1 > n {
+                    freeBlocks[i] = (fb.0+n, fb.1-n)
+                } else {
+                    freeBlocks.remove(at: i)
+                }
+
+                files[fileId] = (fb.0, n)
+                fileBlocks[fb.0] = (fileId, n)
                 fileBlocks[start] = nil
-                fileBlocks[i] = (fileId, n)
                 break
             }
+
+            i -= 1
         }
     }
 
