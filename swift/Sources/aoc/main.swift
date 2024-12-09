@@ -12,7 +12,9 @@ try [
   day6_1(),
   day6_2(),
   day7_1(),
-  day7_2()*/
+  day7_2(),
   day8_1(),
-  day8_2()
+  day8_2()*/
+  day9_1(),
+  day9_2()
 ].forEach({(d: IDay) in try d.run()})
