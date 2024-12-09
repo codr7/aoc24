@@ -1,6 +1,6 @@
 class day9_1: IDay {
     var label: String { "day9:1" }
-    var path: String { "input9" }
+    var path: String { "test" }
 
     var files: [Int:(Int, Int)] = [:]
     var fileBlocks: [Int:(Int, Int)] = [:]
@@ -25,7 +25,7 @@ class day9_1: IDay {
         }
     }
 
-    func moveFile(_ fileId: Int, _ start: Int, _ n: Int) {
+    func moveBlocks(_ fileId: Int, _ start: Int, _ n: Int) {
         var i = 0
         var rn = n
         
@@ -54,7 +54,7 @@ class day9_1: IDay {
         for i in stride(from: maxBlock-1,
                         through: 0,
                         by: -1) {
-            if let f = fileBlocks[i] { moveFile(f.0, i, f.1) }
+            if let f = fileBlocks[i] { moveBlocks(f.0, i, f.1) }
         }
     }
 

@@ -1,7 +1,7 @@
 class day9_2: day9_1 {
     override var label: String { "day9:2" }
 
-    override func moveFile(_ fileId: Int, _ start: Int, _ n: Int) {
+    func moveFile(_ fileId: Int, _ start: Int, _ n: Int) {
         for i in 0..<start {
             if let fb = freeBlocks[i], fb >= n {
                 freeBlocks[start] = n
