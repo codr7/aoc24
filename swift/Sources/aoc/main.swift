@@ -14,7 +14,9 @@ try [
   day7_1(),
   day7_2(),
   day8_1(),
-  day8_2()*/
+  day8_2()
   day9_1(),
-  day9_2()
+  day9_2(),*/
+  day10_1(),
+  day10_2()
 ].forEach({(d: IDay) in try d.run()})

@@ -20,6 +20,12 @@ struct XY: Hashable, CustomStringConvertible {
         l.y += r.y
     }
 
+    static func +(_ l: XY, _ r: XY) -> XY {
+        var result = l
+        result += r
+        return result
+    }
+
     static func -=(_ l: inout XY, _ r: XY) {
         l.x -= r.x
         l.y -= r.y
