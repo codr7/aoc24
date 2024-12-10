@@ -1,8 +1,9 @@
 class day10_1: IDay {
-    typealias Route = Set<XY>
-
     var label: String { "day10:1" }
     var path: String { "input10" }
+
+    typealias Route = Set<XY>
+
     var topo: [[Int]] = []
     var width: Int = 0
     var height: Int = 0
