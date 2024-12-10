@@ -10,6 +10,7 @@ class day10_2: day10_1 {
 
         if isValid(xy) && !route.contains(xy) {
             let v = getTopo(xy)
+
             if v == pv + 1 {
                 var r = route
                 r.insert(xy)
