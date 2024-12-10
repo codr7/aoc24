@@ -31,8 +31,7 @@ class day10_1: IDay {
     }
     
     func traceRoutes(_ start: XY, _ route: inout Route, _ pv: Int) -> Int {
-        let ss = steps.map({traceRoute(start, $0, &route, pv)})
-        return ss.sum
+        steps.map({traceRoute(start, $0, &route, pv)}).sum
     }
 
     func traceRoutes() -> Int {
