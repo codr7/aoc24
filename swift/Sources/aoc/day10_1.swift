@@ -13,9 +13,7 @@ class day10_1: IDay {
         topo.append(Array(line.map({$0.wholeNumberValue!})))
     }
 
-    func getTopo(_ xy: XY) -> Int {
-        topo[xy.y][xy.x]
-    }
+    func getTopo(_ xy: XY) -> Int { topo[xy.y][xy.x] }
 
     func isValid(_ xy: XY) -> Bool {
         xy.x >= 0 && xy.x < width && xy.y >= 0 && xy.y < height 
