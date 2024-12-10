@@ -13,8 +13,6 @@ class day10_1: IDay {
         topo.append(Array(line.map({$0.wholeNumberValue!})))
     }
 
-    func getTopo(_ xy: XY) -> Int { topo[xy.y][xy.x] }
-
     func isValid(_ xy: XY) -> Bool {
         xy.x >= 0 && xy.x < width && xy.y >= 0 && xy.y < height 
     }
@@ -25,7 +23,7 @@ class day10_1: IDay {
                     _ pv: Int) -> Int {
         let xy = start + step
         if !isValid(xy) || route.contains(xy) { return 0 }
-        let v = getTopo(xy)
+        let v = topo[xy.y][xy.x]
         if v != pv + 1 { return 0 }
         route.insert(xy)
         if v == 9 { return 1}

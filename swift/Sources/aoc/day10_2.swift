@@ -9,7 +9,7 @@ class day10_2: day10_1 {
         let xy = start + step
 
         if isValid(xy) && !route.contains(xy) {
-            let v = getTopo(xy)
+            let v = topo[xy.y][xy.x]
 
             if v == pv + 1 {
                 var r = route
