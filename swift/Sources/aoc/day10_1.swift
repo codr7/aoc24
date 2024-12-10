@@ -66,11 +66,7 @@ class day10_1: IDay {
     func draw() {
         for row in topo {
             var result = ""
-            
-            for col in row {
-                result += String(col)
-            }
-
+            for col in row { result += String(col) }
             print(result)
         }
     }

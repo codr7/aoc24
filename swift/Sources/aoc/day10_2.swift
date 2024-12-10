@@ -14,11 +14,8 @@ class day10_2: day10_1 {
                 var r = route
                 r.insert(xy)
                 
-                if v == 9 {
-                    routes.insert(r)
-                } else {
-                    traceRoutes(xy, r, &routes, v)
-                }
+                if v == 9 { routes.insert(r) }
+                else { traceRoutes(xy, r, &routes, v) }
             }
         }
     }
@@ -43,9 +40,7 @@ class day10_2: day10_1 {
             let row = topo[y]
             
             for x in 0..<row.count {
-                if row[x] == 0 { 
-                    traceRoutes(XY(x, y), &routes, 0)
-                }
+                if row[x] == 0 { traceRoutes(XY(x, y), &routes, 0) }
             }
         }
 
